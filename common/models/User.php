@@ -26,9 +26,11 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
-    const STATUS_ACTIVE = 10;
+    const STATUS_INACTIVE = -1;
+    const STATUS_ACTIVE = 1;
 
+    const ROLE_ADMIN = 2;
+    const ROLE_CLIENT = 3;
 
     /**
      * {@inheritdoc}
@@ -209,5 +211,31 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /** User roli admin yoki admin emas ligini tekshiradi
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        if ($this->role === self::ROLE_ADMIN)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /** User roli client yoki client emasligini tekshiradi
+     * @return bool
+     */
+    public function isClient(): bool
+    {
+        if ($this->role === self::ROLE_CLIENT || $this->role === self::ROLE_ADMIN)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
