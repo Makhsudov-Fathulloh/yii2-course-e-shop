@@ -33,7 +33,7 @@ class MenuWidget extends Widget
         $this->menuHtml = $this->getMenuHtml($this->tree);
 //        debug($this->tree);
 
-        \Yii::$app->cache->set('menu', $this->menuHtml, 60);
+        \Yii::$app->cache->set('menu', $this->menuHtml, 5);
         return $this->menuHtml;
     }
 
