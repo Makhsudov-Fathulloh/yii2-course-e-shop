@@ -2,6 +2,9 @@
 
  $('#sl2').slider();
 
+ $('.catalog').dcAccordion({
+	 speed: 300
+ });
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
 	};	

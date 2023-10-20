@@ -19,11 +19,11 @@ class m231015_141008_category extends Migration
             'updated_at' => $this->integer(),
         ]);
 
-        $this->createIndex(
-            'idx-category-user_id',
-            '{{%category}}',
-            'parent_id'
-        );
+//        $this->createIndex(
+//            'idx-category-user_id',
+//            '{{%category}}',
+//            'parent_id'
+//        );
     }
 
     /**
@@ -31,10 +31,10 @@ class m231015_141008_category extends Migration
      */
     public function safeDown()
     {
-        $this->dropIndex(
-            'idx-category-user_id',
-            '{{%category}}',
-        );
+//        $this->dropIndex(
+//            'idx-category-user_id',
+//            '{{%category}}',
+//        );
 
         $this->dropTable('{{%category}}');
 
