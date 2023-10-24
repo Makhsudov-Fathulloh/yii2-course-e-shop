@@ -76,10 +76,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $hits = Product::find()->where(['hit' => 1])->limit(6)->all();
-        return $this->render('index', compact('hits'));
-
-//        return $this->render('index');
+        return $this->render('index');
     }
 
     /**

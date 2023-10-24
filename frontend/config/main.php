@@ -12,7 +12,7 @@ return [
     'bootstrap' => ['log'],
 //    'language' => 'ru-RU',
     'controllerNamespace' => 'frontend\controllers',
-//    'defaultRoute' => 'category/index',
+    'defaultRoute' => 'category/index',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -43,6 +43,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
             ],
         ],

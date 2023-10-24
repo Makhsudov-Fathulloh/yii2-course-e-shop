@@ -17,7 +17,7 @@ class m231015_141036_product extends Migration
             'price' => $this->float()->defaultValue(0),
             'keywords' => $this->string(512)->notNull(),
             'description' => $this->string(512)->notNull(),
-            'images' => $this->string(512)->notNull()->defaultValue('/frontend/web/images/no-images.png'),
+            'images' => $this->string(512)->notNull()->defaultValue('no-image.png'),
             'hit' => $this->integer()->defaultValue(0), // enum(2, 3)->defaultValue(0),
             'new' => $this->integer()->defaultValue(0), // enum(2, 3)->defaultValue(0),
             'sale' => $this->integer()->defaultValue(0), // enum(2, 3)->defaultValue(0),
