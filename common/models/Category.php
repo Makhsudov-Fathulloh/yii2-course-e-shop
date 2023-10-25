@@ -6,13 +6,6 @@ use yii\db\ActiveRecord;
 
 class Category extends ActiveRecord
 {
-    /**
-     * @var mixed|null
-     */
-    public $name;
-    public $keywords;
-    public $description;
-
     public static function tableName()
     {
         return '{{%category}}';

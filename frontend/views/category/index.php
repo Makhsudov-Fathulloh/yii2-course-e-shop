@@ -71,9 +71,9 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <h2>Category</h2>
+                    <h2>Category</h2><!--/category-products-->
 
-                    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                    <div class="panel-group category-products" id="accordian">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -81,32 +81,6 @@
                                         <?= \frontend\components\MenuWidget::widget(['tpl' => 'menu']) ?>
                                     </ul>
                                 </h4>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Mens
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="mens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">Prada</a></li>
-                                        <li><a href="#">Dior</a></li>
-                                        <li><a href="#">Armani</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Shoes</a></h4>
                             </div>
                         </div>
                     </div><!--/category-products-->
@@ -147,6 +121,7 @@
                     <div class="features_items"><!--features_items-->
 <!--                        <h2 class="title text-center">--><?php //$category->name ?><!--</h2>-->
                         <h2 class="title text-center">Features Items</h2>
+                        <!-- item list -->
                         <?php foreach ($hits as $hit) : ?>
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
@@ -154,7 +129,9 @@
                                         <div class="productinfo text-center">
                                             <?= \yii\helpers\Html::img("/images/products/{$hit->images}", ['alt' => $hit->name]) ?>
                                             <h2>$<?= $hit->price ?></h2>
-                                            <p><?= $hit->name ?></p>
+                                            <p>
+                                                <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"><?= $hit->name ?></a>
+                                            </p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <div class="product-overlay">
@@ -165,7 +142,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <?php if ($hit->new) : ?>
                                         <?= \yii\helpers\Html::img("/images/home/new.png", ['alt' => 'New', 'class' => 'new']) ?>
                                     <?php endif; ?>
@@ -173,7 +149,6 @@
                                     <?php if ($hit->sale) : ?>
                                         <?= \yii\helpers\Html::img("/images/home/sale.png", ['alt' => 'sale', 'class' => 'new']) ?>
                                     <?php endif; ?>
-
                                     <div class="choose">
                                         <ul class="nav nav-pills nav-justified">
                                             <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
@@ -182,9 +157,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         <?php endforeach ?>
-
+                        <!-- end of item list -->
                     </div><!--features_items-->
                 <?php endif; ?>
 

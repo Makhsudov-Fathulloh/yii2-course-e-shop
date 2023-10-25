@@ -1,7 +1,6 @@
 <?php
 
 use yii\widgets\LinkPager;
-use yii\helpers\Url;
 
 /**
  * @var $category \common\models\Category
@@ -28,30 +27,6 @@ use yii\helpers\Url;
                                         <?= \frontend\components\MenuWidget::widget(['tpl' => 'menu']) ?>
                                     </ul>
                                 </h4>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Mens
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="mens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">Prada</a></li>
-                                        <li><a href="#">Dior</a></li>
-                                        <li><a href="#">Armani</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Shoes</a></h4>
                             </div>
                         </div>
                     </div><!--/category-products-->
@@ -94,8 +69,6 @@ use yii\helpers\Url;
                 <?php if (!empty($products)) : ?>
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center"><?= $category->name ?></h2>
-                    <h2 class="title text-center">Features Items</h2>
-
                     <!-- item list -->
                     <?php foreach ($products as $product): ?>
                         <div class="col-sm-4">
@@ -105,25 +78,10 @@ use yii\helpers\Url;
                                         <?= \yii\helpers\Html::img("/images/products/{$product->images}", ['alt' => $product->name]) ?>
                                         <h2>$<?= $product->price ?></h2>
                                         <p>
-                                            <a href="<?= Url::to(['product/view', 'id' => $product->id]) ?>"><?= $product->name ?></a>
+                                            <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"><?= $product->name ?></a>
                                         </p>
-                                        <a href="#" data-id="<?= $product->id ?>" class="btn btn-default add-to-cart"><i
-                                                    class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="#" data-id="<?= $product->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </div>
-
-                                    <!--                                <div class="product-overlay">-->
-                                    <!--                                    <div class="overlay-content">-->
-                                    <!--                                        <h2>$-->
-                                    <!--                                            -->
-                                    <?php //= $product->price ?><!--</h2>-->
-                                    <!--                                        <p>-->
-                                    <!--                                            -->
-                                    <?php //= $product->name ?><!--</p>-->
-                                    <!--                                        <a href="#" class="btn btn-default add-to-cart"><i-->
-                                    <!--                                                    class="fa fa-shopping-cart"></i>Add to cart</a>-->
-                                    <!--                                    </div>-->
-                                    <!--                                </div>-->
-
                                 </div>
                                 <?php if ($product->new): ?>
                                     <?= \yii\helpers\Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'new']) ?>
@@ -140,10 +98,9 @@ use yii\helpers\Url;
                             </div>
                         </div>
                     <?php endforeach; ?>
-
                     <!-- end of item list -->
                     <div class="clearfix"></div>
-                    <div style="width:100%; justify-content: center; display: flex;">
+                    <div style="justify-content: center; display: flex;">
                         <?php
                         echo LinkPager::widget(['pagination' => $pages]);
                         ?>
