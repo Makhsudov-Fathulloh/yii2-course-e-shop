@@ -24,9 +24,9 @@ class CategoryController extends AppController
 //        return $this->render('view', compact('products'));
 //    }
 
-    public function actionView($id)
+    public function actionView($id) // Способ 1 get($id)
     {
-        $id = \Yii::$app->request->get('id');
+//        $id = \Yii::$app->request->get('id'); // Способ 2 get($id)
 
         $category = Category::findOne($id);
         if (empty($category))

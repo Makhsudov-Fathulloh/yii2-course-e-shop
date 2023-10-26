@@ -9,8 +9,9 @@ use Yii;
 
 class ProductController extends AppController
 {
-    public function actionView($id) {
-        $id = Yii::$app->request->get('id');
+    public function actionView($id) // Способ 1 get($id)
+    {
+//        $id = Yii::$app->request->get('id'); // Способ 2 get($id)
         $product = Product::findOne($id);
         if (empty($product))
             throw new HttpException(404, 'The requested "Product" was not found');
