@@ -6,6 +6,30 @@
 	 speed: 300
  });
 
+ function showCart(cart) {
+	 $('#cart .modal-body').html(cart);
+	 // $('#cart').modal();
+	 $('#cart').css({'display':'block', 'opacity': '1'});
+ }
+
+ function closeCart() {
+	 $('#cart').css({'display':'none', 'opacity': '0'});
+ }
+
+function clearCart() {
+	$.ajax({
+		url: '/cart/clear',
+		type: 'GET',
+		success: function (res) {
+			if (!res) alert('Ошибка!')
+			showCart(res);
+		},
+		error: function () {
+			alert('Error!');
+		}
+	});
+}
+
  $('.add-to-cart').on('click', function (e) {
 	 e.preventDefault();
 	 var id = $(this).data('id');
@@ -14,13 +38,13 @@
 		 data: {id: id},
 		 type: 'GET',
 		 success: function (res) {
-			 if (!res) alert('Not found!')
-			 console.log(res)
+			 if (!res) alert('Ошибка!')
+			 showCart(res);
 		 },
 		 error: function () {
 			 alert('Error!');
 		 }
-	 })
+	 });
  });
 
 	var RGBChange = function() {
@@ -47,5 +71,13 @@ $(document).ready(function(){
 	        activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
 	        zIndex: 2147483647 // Z-Index for the overlay
 		});
+	});
+
+	$('.btn-close').click(function () {
+		closeCart();
+	});
+
+	$('.btn-danger').click(function () {
+		clearCart();
 	});
 });
