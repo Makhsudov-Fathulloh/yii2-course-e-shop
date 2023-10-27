@@ -2485,6 +2485,10 @@ h2.title {
   line-height: 25px;
 }
 
+.del-item {
+  cursor: pointer;
+}
+
 .social-networks{
   overflow: hidden;
   text-align: center;

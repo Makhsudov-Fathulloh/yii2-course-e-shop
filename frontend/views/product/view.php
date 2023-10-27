@@ -10,7 +10,6 @@ use yii\helpers\Url;
  * @var $category MenuWidget
  */
 
-//$category = $product->category;
 //var_dump($category); die();
 //debug($product->category);
 //var_dump($product->category); die();
@@ -115,16 +114,16 @@ use yii\helpers\Url;
                                 <?= Html::img("@web/images/home/sale.png", ['alt' => 'Распродажа', 'class' => 'newarrival']) ?>
                             <?php endif; ?>
                             <h2> <?= $product->name ?> </h2>
-                            <p> Web ID: <?= $product->id ?></p>
+                            <p> Web ID: <?= $product->keywords ?></p>
                             <img src="/images/product-details/rating.png" alt=""/>
                             <span>
 									<span>US $<?= $product->price ?></span>
 									<label>Quantity:</label>
-									<input type="text" value="3"/>
-									<button type="button" class="btn btn-fefault cart">
+									<input type="text" value="1" id="qty"/>
+									<a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id]) ?>" data-id="<?= $product->id ?>" class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
-									</button>
+									</a>
 								</span>
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>

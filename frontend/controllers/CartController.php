@@ -31,6 +31,8 @@ class CartController extends AppController
     public function actionAdd()
     {
         $id = Yii::$app->request->get('id');
+        $qty = (int)Yii::$app->request->get('id');
+        $qty = !$qty ? 1 : $qty;
 
         $product = Product::findOne($id);
         if (empty($product)) return false;
@@ -38,11 +40,10 @@ class CartController extends AppController
         $session = Yii::$app->session;
         $session->open();
         $cart = new Cart();
-        $cart->addToCart($product);
-
-//        debug($session['cart']);
-//        debug($session['cart.qty']);
-//        debug($session['cart.sum']);
+        $cart->addToCart($product, $qty);
+        if (!Yii::$app->request->isAjax) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
 
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
@@ -58,5 +59,32 @@ class CartController extends AppController
 
         $this->layout = false;
         return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionDelItem()
+    {
+        $id = Yii::$app->request->get('id');
+
+        $session = Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->recalc($id); // recalc() перешот
+
+        $this->layout = false;
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionShow()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $this->layout = false;
+
+        return $this->render('cart-modal', compact('session'));
+    }
+
+    public function actionView()
+    {
+        return $this->render('view');
     }
 }
