@@ -21,11 +21,24 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+//            'loginUrl' => '';
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+//        'mailer' => [
+//            'class' => 'yii\swiftmailer\Mailer',
+//            // 'useFileTransport' => true, // false
+//            'transport' => [
+//                'class' => 'Swift_SmtpTransport',
+//                'host' => 'localhost',
+//                'username' => 'username',
+//                'password' => 'password',
+//                'port' => '587',
+//                'encryption' => 'tls',
+//            ],
+//        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -48,7 +61,13 @@ return [
                 'product/<id:\d+>' => 'product/view',
             ],
         ],
+    ],
 
+    'modules' => [
+        'admin' => [
+            'class' => 'backend\modules\admin\Module',
+            'layout' => 'admin'
+        ],
     ],
     'params' => $params,
 ];

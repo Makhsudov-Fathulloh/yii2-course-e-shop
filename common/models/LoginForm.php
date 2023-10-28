@@ -16,7 +16,6 @@ class LoginForm extends Model
 
     private $_user;
 
-
     /**
      * {@inheritdoc}
      */
@@ -30,6 +29,11 @@ class LoginForm extends Model
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
+    }
+
+    public function attributeLabels()
+    {
+        return [];
     }
 
     /**

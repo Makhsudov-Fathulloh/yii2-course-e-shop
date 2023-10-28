@@ -18,7 +18,7 @@ LteAppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <?php $this->registerCsrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <title>Админ | <?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
 
         <!--    --><?php
@@ -26,14 +26,14 @@ LteAppAsset::register($this);
         //        $this->registerJsFile('js/respond.min.js', ['position' => \yii\web\View::POS_HEAD, 'condition' => 'lte IE9']);
         //    ?>
 
-            <link rel="shortcut icon" href="images/ico/favicon.ico">
-            <link rel="apple-touch-icon-precomposed" sizes="144x144"
-                  href="images/ico/apple-touch-icon-144-precomposed.png">
-            <link rel="apple-touch-icon-precomposed" sizes="114x114"
-                  href="images/ico/apple-touch-icon-114-precomposed.png">
-            <link rel="apple-touch-icon-precomposed" sizes="72x72"
-                  href="images/ico/apple-touch-icon-72-precomposed.png">
-            <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144"
+              href="images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114"
+              href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"
+              href="images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     </head><!--/head-->
 
     <body>
@@ -102,7 +102,7 @@ LteAppAsset::register($this);
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <li><a href="<?= \yii\helpers\Url::to(['site/logout']) ?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username'] ?> (Logout)</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['site/logout']) ?>"><i class="fa fa-user"></i> <?= Yii::$app->user->identity['username'] ?>></a></li>
                                 <?php endif; ?>
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
@@ -154,7 +154,7 @@ LteAppAsset::register($this);
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
                             <form method="get" action="<?= \yii\helpers\Url::to(['search/search']) ?>">
-                            <input type="text" placeholder="Search" name="q"/>
+                                <input type="text" placeholder="Search" name="q"/>
                             </form>
                         </div>
                     </div>
@@ -324,18 +324,6 @@ LteAppAsset::register($this);
         </div>
 
     </footer><!--/Footer-->
-
-    <?php
-    \yii\bootstrap5\Modal::begin([
-        'title' => '<h2>Корзина</h2>',
-        'id' => 'cart',
-        'size' => 'modal-lg',
-        'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-                 <a href="'. \yii\helpers\Url::to(['cart/view']) .'" class="btn btn-success">Оформить заказ</a>
-                 <button type="button" class="btn btn-danger" onclick="clearCart()" >Очистить корзину</button>'
-    ]);
-    \yii\bootstrap5\Modal::end();
-    ?>
 
     <?php $this->endBody() ?>
     </body>

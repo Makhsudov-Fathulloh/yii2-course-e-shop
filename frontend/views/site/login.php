@@ -10,7 +10,7 @@ use yii\bootstrap5\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="site-login container">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
@@ -23,18 +23,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'rememberMe')->checkbox([
+                        'template' => '<div class="\col-lg-offset-1 col-lg-3\">{input}{label}</div>
+                            <div class="\col-lg-8\">{error}</div>',
+                ]) ?>
 
-                <div class="my-1 mx-0" style="color:#999;">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                    <br>
-                    Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
-                </div>
+<!--                <div class="my-1 mx-0" style="color:#999;">-->
+<!--                    If you forgot your password you can --><?php //= Html::a('reset it', ['site/request-password-reset']) ?><!--.-->
+<!--                    <br>-->
+<!--                    Need new verification email? --><?php //= Html::a('Resend', ['site/resend-verification-email']) ?>
+<!--                </div>-->
 
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
-
             <?php ActiveForm::end(); ?>
         </div>
     </div>
