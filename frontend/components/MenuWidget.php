@@ -25,15 +25,17 @@ class MenuWidget extends Widget
     public function run()
     {
         // get cache
-        $menu = \Yii::$app->cache->get('menu');
+        $menu = \Yii::$app->cache->get('menu'); // agar cache hotirada malumotlar bolsa shu joydan oladi 
         if ($menu) return $menu;
 
         $this->data = Category::find()->indexBy('id')->asArray()->all(); // indexBy([] va id raqamlarini birxil qiladi), asArray(faqat [] korinishida chiqaradi)
         $this->tree = $this->getTree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
 //        debug($this->tree);
-
-        \Yii::$app->cache->set('menu', $this->menuHtml, 5);
+        
+        // set cache
+        \Yii::$app->cache->set('menu', $this->menuHtml, 5); // cache xotirada malumotlarni yaratadi, 5 xotirada malumotlar yangilarish vaqti (secunds)
+        
         return $this->menuHtml;
     }
 
