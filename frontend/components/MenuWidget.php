@@ -15,7 +15,7 @@ class MenuWidget extends Widget
 
     public function init()
     {
-        parent::init();
+        parent::init(); // avlod class ichida ajdod clasi constructorini chaqishish
         if ($this->tpl === null) {
             $this->tpl = 'menu';
         }
@@ -28,7 +28,7 @@ class MenuWidget extends Widget
         $menu = \Yii::$app->cache->get('menu');
         if ($menu) return $menu;
 
-        $this->data = Category::find()->indexBy('id')->asArray()->all();
+        $this->data = Category::find()->indexBy('id')->asArray()->all(); // indexBy([] va id raqamlarini birxil qiladi), asArray(faqat [] korinishida chiqaradi)
         $this->tree = $this->getTree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
 //        debug($this->tree);
