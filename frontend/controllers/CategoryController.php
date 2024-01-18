@@ -29,11 +29,14 @@ class CategoryController extends AppController
 //        $id = \Yii::$app->request->get('id'); // Способ 2 get($id)
 
         $category = Category::findOne($id);
-        if (empty($category))
+         if (empty($category))
             throw new HttpException(404, 'The requested "Category" was not found');
 
         $query = Product::find()->where(['category_id' => $id]);
-        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3]); // har 1 page ga 3ta dan tovar chiqsin
+        // $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3, 'forcePageParam'=>false, 'pageSizeParam'=>false]);
+        // 'forcePageParam'=>false, 'pageSizeParam'=>false (/category/...?page=...&per-page=... -> /category/...?page=...)
+        
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
         $this->setMeta('E-SHOP | Pagination ' . $category->name, $category->keywords, $category->description);
 
