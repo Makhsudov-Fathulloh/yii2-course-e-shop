@@ -2486,7 +2486,7 @@ h2.title {
 }
 
 .del-item {
-  cursor: pointer;
+  cursor: pointer; /* qursor buttonga otadi */
 }
 
 .social-networks{

@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 <div class="container">
 
     <!--flash-->
-    <?php if (Yii::$app->session->hasFlash('success')) : ?>
+    <?php if (Yii::$app->session->hasFlash('success')) : ?> <!-- hasFlash() success kelsa -->
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
         </div>
     <?php endif; ?>
 
-    <?php if (Yii::$app->session->hasFlash('error!')) : ?>
+    <?php if (Yii::$app->session->hasFlash('error!')) : ?> <!-- hasFlash() error! kelsa -->
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>

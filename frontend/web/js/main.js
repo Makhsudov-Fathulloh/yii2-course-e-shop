@@ -35,7 +35,7 @@ $('#cart .modal-body').on('click', '.del-item', function(){
 		type: 'GET',
 		success: function (res) {
 			if (!res) alert('Ошибка!')
-			showCart(res);
+			showCart(res); // cart modalini ochadi
 		},
 		error: function () {
 			alert('Error!');
@@ -62,13 +62,13 @@ function clearCart() {
 }
 
  $('.add-to-cart').on('click', function (e) {
-	 e.preventDefault();
-	 var id = $(this).data('id'), qty = $('#qty').val();
+	 e.preventDefault(); // default holatini bekor qilish, yani page yangilanmaydi
+	 var id = $(this).data('id'), qty = $('#qty').val(); // tovar id olamiz,
 	 $.ajax({
 		 url: '/cart/add',
 		 data: {id: id, qty: qty},
 		 type: 'GET',
-		 success: function (res) {
+		 success: function (res) { // agar user mavjud bolmagan id ni chaqirsa xatolik qaytaradi
 			 if (!res) alert('Ошибка!')
 			 showCart(res);
 		 },

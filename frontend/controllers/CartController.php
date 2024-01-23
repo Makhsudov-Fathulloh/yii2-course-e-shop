@@ -32,19 +32,20 @@ class CartController extends AppController
 {
     public function actionAdd()
     {
-        $id = Yii::$app->request->get('id');
-        $qty = (int)Yii::$app->request->get('id');
-        $qty = !$qty ? 1 : $qty;
+        $id = Yii::$app->request->get('id'); // product id sini olsami
+        $qty = (int)Yii::$app->request->get('id'); // integerga tekshirib, product sonini oladi
+        $qty = !$qty ? 1 : $qty; // product soni bolmasa 1 yozadi, bolmasa kelayotkan son
 
-        $product = Product::findOne($id);
-        if (empty($product)) return false;
+        $product = Product::findOne($id); // product ni oladi
+        if (empty($product)) return false; // product borligini tekshiradi
 
         $session = Yii::$app->session;
         $session->open();
+
         $cart = new Cart();
-        $cart->addToCart($product, $qty);
+        $cart->addToCart($product, $qty); // $product id ni oladi, $qty sonini oladi
         if (!Yii::$app->request->isAjax) {
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(Yii::$app->request->referrer); // ozini page ga qaytadi
         }
 
         $this->layout = false;
@@ -90,12 +91,13 @@ class CartController extends AppController
         $session = Yii::$app->session;
         $session->open();
         $this->setMeta('Корзина');
+
         $order = new Order();
         if ($order->load(Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
             if ($order->save()) {
-                $this->saveOrderItems($session['cart'], $order->id);
+                $this->saveOrderItems($session['cart'], $order->id); // buyurtma muaffaqiyatli bolsa saveOrderItems() chaqiramiz
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами в ближайшее время.');
 
                 //Отправка почты на админ
@@ -107,16 +109,16 @@ class CartController extends AppController
                     ->send();
 
                 //Отправка почты на
-                Yii::$app->mailer->compose('order', ['session' => $session])
-                    ->setFrom(['mr.makhsudov@gmail.com' => 'yii2.loc'])
-                    ->setTo($order->email)
+                Yii::$app->mailer->compose('order', ['session' => $session]) // compose() method send emil
+                    ->setFrom(['mr.makhsudov@gmail.com' => 'yii2.loc']) // real projectda pochta config bilan bir xil bolishkere
+                    ->setTo($order->email) // qayerga yuboramiz (user korsatkan email ga)
                     ->setSubject('Заказ')
 //                    ->setTextBody('Текст сообщения')
                     ->send();
 
-                $session->remove('cart');
-                $session->remove('cart.qty');
-                $session->remove('cart.sum');
+                $session->remove('cart'); // cart ni tozalash
+                $session->remove('cart.qty'); // product sonini tozalash
+                $session->remove('cart.sum'); // product summasini tozalash
 
                 return $this->refresh();
             } else {
@@ -129,9 +131,9 @@ class CartController extends AppController
 
     protected function saveOrderItems($items, $order_id) {
         foreach ($items as $id => $item) {
-            $order_items = new OrderItems();
-            $order_items->order_id = $order_id;
-            $order_items->product_id = $id;
+            $order_items = new OrderItems(); // ActivRecord class dan foydalanganimiz sababli, xar 1 product uchun yangi object oladi
+            $order_items->order_id = $order_id; // buyurtma id si
+            $order_items->product_id = $id; // product id si
             $order_items->name = $item['name'];
             $order_items->price = $item['price'];
             $order_items->qty_item = $item['qty'];

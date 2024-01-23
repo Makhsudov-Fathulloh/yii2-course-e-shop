@@ -13,13 +13,19 @@ return [
 //    'language' => 'ru-RU',
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'category/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'backend\modules\admin\Module',
+            'layout' => 'admin'
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => true, // userni eslab qolish
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
 //            'loginUrl' => '';
         ],
@@ -27,9 +33,9 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
-//        'mailer' => [
-//            'class' => 'yii\swiftmailer\Mailer',
-//            // 'useFileTransport' => true, // false
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => true, // local send email, real project da false qilishkerak
 //            'transport' => [
 //                'class' => 'Swift_SmtpTransport',
 //                'host' => 'localhost',
@@ -38,7 +44,7 @@ return [
 //                'port' => '587',
 //                'encryption' => 'tls',
 //            ],
-//        ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -63,11 +69,5 @@ return [
         ],
     ],
 
-    'modules' => [
-        'admin' => [
-            'class' => 'backend\modules\admin\Module',
-            'layout' => 'admin'
-        ],
-    ],
     'params' => $params,
 ];

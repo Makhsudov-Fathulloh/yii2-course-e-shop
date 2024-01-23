@@ -19,14 +19,14 @@ class AppAdminController extends Controller
                 'only' => ['login', 'logout', 'signup'],
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => true, // shu class dan extends olgan class lar ga
                         'actions' => ['login', 'signup'],
-                        'roles' => ['?'],
+                        'roles' => ['?'], // authorization otmaganlarga login singnup
                     ],
                     [
                         'allow' => true,
                         'actions' => ['logout'],
-                        'roles' => ['@'],
+                        'roles' => ['@'], // authorization otkanlarga logout
                     ],
                 ],
             ],

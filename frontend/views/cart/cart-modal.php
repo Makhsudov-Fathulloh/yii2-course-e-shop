@@ -11,6 +11,7 @@
             </tr>
             </thead>
             <tbody>
+            <tbody>
             <?php foreach($session['cart'] as $id => $item): ?>
                 <tr>
                     <td><?= yii\helpers\Html::img("@web/images/products/{$item['images']}", ['alt' => $item['name'], 'height' => 50]) ?></td>

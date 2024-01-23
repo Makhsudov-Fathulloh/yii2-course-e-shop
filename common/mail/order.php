@@ -1,4 +1,4 @@
-<div class="table-responsive">
+ <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead>
             <tr>
